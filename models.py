@@ -5,8 +5,9 @@ from settings import LIST_OF_VARIANTS, INITIAL_PLAYER_HEALTH
 
 class Enemy():
     """create opponent for play"""
+
     health = 0
-    
+
     def __init__(self):
         """enemy stats"""
         Enemy.health += 1
@@ -16,9 +17,7 @@ class Enemy():
         self.health = self.health - 1
         if self.health < 1:
             raise EnemyDown("You win your enemy")
-
-        else:
-            return self.health
+        return self.health
 
     def select_attack(self):
         """random choise from list """
@@ -44,19 +43,16 @@ class Player():
         self.player_health = self.player_health - 1
         if self.player_health < 1:
             raise GameOver ("You lose")
-        else:
-            return self.player_health
+        return self.player_health
 
     def select_attack(self):
         """return fight choise"""
         try:
             attack_choise = LIST_OF_VARIANTS[int(input("Select your attack_choise(1 - WARRIOR, 2 - ROBBER, 3 - WIZARD: ")) - 1]
-            return attack_choise  
+            return attack_choise
         except IndexError:
             print("You must input only 1, 2 or 3")
             self.select_attack()
-        
-
 
     def select_defence(self):
         """return defence choice"""
@@ -66,14 +62,9 @@ class Player():
         except IndexError:
             print("You must input only 1, 2 or 3")
             self.select_defence()
-        
-
-    @staticmethod
-    def fight(self):
-        """for fighting?"""
-        
 
     def attack(self, other: Enemy):
+        """for attack enemy"""
         player = self.select_attack()
         enemy = other.select_defence()
         if player == "WARRIOR" and enemy == "ROBBER" \
@@ -88,6 +79,7 @@ class Player():
             return print("YOUR ATTACK IS FAILED!")
 
     def defence(self, other:Enemy):
+        """for defence from enemy attack"""
         player = self.select_defence()
         enemy = other.select_attack()
         if player == "WARRIOR" and enemy == "ROBBER" \
@@ -96,13 +88,13 @@ class Player():
             return print("YOUR DEFENCE IS SUCCESSFUL!")
         elif player == enemy:
             return print("IT'S A DRAW!")
-        else: 
+        else:
             self.descrease_health()
-            return print(f"YOUR DEFENCE IS FAILED! Your health - {self.player_health}") 
+            return print(f"YOUR DEFENCE IS FAILED! Your health - {self.player_health}")
 
 if __name__ == "__main__":
-    enemy = Enemy()
-    print(enemy.health, enemy.select_attack(), enemy.select_defence())
-    player = Player("testing")
+    enemy2 = Enemy()
+    print(enemy2.health, enemy2.select_attack(), enemy2.select_defence())
+    player2 = Player("testing")
     enemy1 = Enemy()
-    print(enemy1.health) 
+    print(enemy1.health)
