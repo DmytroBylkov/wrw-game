@@ -70,8 +70,8 @@ class Player():
         if player == "WARRIOR" and enemy == "ROBBER" \
         or player == "ROBBER" and enemy == "WIZARD" \
         or player == "WIZARD" and enemy == "WARRIOR":
-            other.descrease_health()
             self.score += 1
+            other.descrease_health()
             return  print("YOUR ATTACK IS SUCCESSFUL!")
         elif player == enemy:
             return print("IT'S A DRAW!")
