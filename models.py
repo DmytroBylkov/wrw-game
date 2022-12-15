@@ -20,14 +20,12 @@ class Enemy():
         return self.health
 
     def select_attack(self):
-        """random choise from list """
-        choise_enemy_attack = LIST_OF_VARIANTS[random.randint(0, 2)]
-        return choise_enemy_attack
+        """random choice from list """
+        return random.choice(LIST_OF_VARIANTS)
 
     def select_defence(self):
         """random choise from list"""
-        choise_enemy_defence = LIST_OF_VARIANTS[random.randint(0, 2)]
-        return choise_enemy_defence
+        return random.choice(LIST_OF_VARIANTS)
 
 class Player():
     """create player for game"""
@@ -39,7 +37,7 @@ class Player():
         self.score = 0
 
     def descrease_health(self):
-        """decrease plaayer health by 1"""
+        """decrease player health by 1"""
         self.player_health = self.player_health - 1
         if self.player_health < 1:
             raise GameOver ("You lose")
@@ -48,28 +46,34 @@ class Player():
     def select_attack(self):
         """return fight choise"""
         try:
-            attack_choise = LIST_OF_VARIANTS[int(input("Select your attack_choise(1 - WARRIOR, 2 - ROBBER, 3 - WIZARD: ")) - 1]
-            return attack_choise
+            attack_choice = LIST_OF_VARIANTS[int(input("Select your attack_choise(1 - WARRIOR, 2 - ROBBER, 3 - WIZARD: ")) - 1]
+            return attack_choice
         except IndexError:
             print("You must input only 1, 2 or 3")
             self.select_attack()
+        except ValueError:
+            print("You must input only 1, 2 or 3")
+            self.select_attack()    
 
     def select_defence(self):
         """return defence choice"""
         try:
-            defence_choise = LIST_OF_VARIANTS[int(input("Select your defence_choise(1 - WARRIOR, 2 - ROBBER, 3 - WIZARD: ")) - 1]
-            return defence_choise
+            defence_choice = LIST_OF_VARIANTS[int(input("Select your defence_choise(1 - WARRIOR, 2 - ROBBER, 3 - WIZARD: ")) - 1]
+            return defence_choice
         except IndexError:
             print("You must input only 1, 2 or 3")
             self.select_defence()
+        except ValueError:
+            print("You must input only 1, 2 or 3")
+            self.select_attack()
 
     def attack(self, other: Enemy):
         """for attack enemy"""
         player = self.select_attack()
         enemy = other.select_defence()
-        if player == "WARRIOR" and enemy == "ROBBER" \
-        or player == "ROBBER" and enemy == "WIZARD" \
-        or player == "WIZARD" and enemy == "WARRIOR":
+        if player == "WARRIOR" and enemy == "ROBBER" or \
+        player == "ROBBER" and enemy == "WIZARD" or \
+        player == "WIZARD" and enemy == "WARRIOR":
             self.score += 1
             other.descrease_health()
             return  print("YOUR ATTACK IS SUCCESSFUL!")
@@ -82,9 +86,9 @@ class Player():
         """for defence from enemy attack"""
         player = self.select_defence()
         enemy = other.select_attack()
-        if player == "WARRIOR" and enemy == "ROBBER" \
-        or player == "ROBBER" and enemy == "WIZARD" \
-        or player == "WIZARD" and enemy == "WARRIOR":
+        if player == "WARRIOR" and enemy == "ROBBER" or \
+        player == "ROBBER" and enemy == "WIZARD" or \
+        player == "WIZARD" and enemy == "WARRIOR":
             return print("YOUR DEFENCE IS SUCCESSFUL!")
         elif player == enemy:
             return print("IT'S A DRAW!")
