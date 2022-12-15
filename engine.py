@@ -4,7 +4,10 @@ from exception import EnemyDown, GameOver
 
 def get_player_name() -> str:
     """get player name from user input """
-    player_name = input("Enter your name for play: ")
+    player_name = input("Enter your name for play: ").strip()
+    if len(player_name) < 1:
+        print("You must enter at least one character for the game name")
+        return get_player_name()
     return player_name
 
 def play() -> None:
@@ -17,11 +20,11 @@ def play() -> None:
         try:
             player.attack(enemy)
             player.defence(enemy)
-        except EnemyDown as excep:
-            print(excep)
+        except EnemyDown as enemydown:
+            print(enemydown)
             enemy = Enemy()
-        except GameOver as exce:
-            print(exce)
+        except GameOver as gameover:
+            print(gameover)
             print(f"{player.name} end game with score = {player.score }")
             break
 
@@ -29,5 +32,5 @@ def play() -> None:
 if __name__ == "__main__":
     try:
         play()
-    except KeyboardInterrupt("Oops, you enter empty value") as exc:
-        print(exc)
+    except KeyboardInterrupt("Oops, you enter empty value") as truble:
+        print(truble)
