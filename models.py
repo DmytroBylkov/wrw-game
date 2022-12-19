@@ -45,27 +45,28 @@ class Player():
 
     def select_attack(self):
         """return fight choise"""
-        try:
-            attack_choice = LIST_OF_VARIANTS[int(input("Select your attack_choise(1 - WARRIOR, 2 - ROBBER, 3 - WIZARD: ")) - 1]
-            return attack_choice
-        except IndexError:
-            print("You must input only 1, 2 or 3")
-            self.select_attack()
-        except ValueError:
-            print("You must input only 1, 2 or 3")
-            self.select_attack()    
+        while True:
+            try:
+                attack_choice = LIST_OF_VARIANTS[int(input\
+                                ("Select your attack_choise(1 - WARRIOR, 2 - ROBBER, 3 - WIZARD): ")) - 1]
+                return attack_choice
+            except IndexError:
+                print("Too big number entered. You must input only 1, 2 or 3")
+            except ValueError:
+                print("Value error. You must input only 1, 2 or 3")
+            
 
     def select_defence(self):
         """return defence choice"""
-        try:
-            defence_choice = LIST_OF_VARIANTS[int(input("Select your defence_choise(1 - WARRIOR, 2 - ROBBER, 3 - WIZARD: ")) - 1]
-            return defence_choice
-        except IndexError:
-            print("You must input only 1, 2 or 3")
-            self.select_defence()
-        except ValueError:
-            print("You must input only 1, 2 or 3")
-            self.select_attack()
+        while True:
+            try:
+                defence_choice = LIST_OF_VARIANTS[int(input\
+                                 ("Select your defence_choise(1 - WARRIOR, 2 - ROBBER, 3 - WIZARD): ")) - 1]
+                return defence_choice
+            except IndexError:
+                print("Too big number entered. You must input only 1, 2 or 3")
+            except ValueError:
+                print("Value error. You must input only 1, 2 or 3")
 
     def attack(self, other: Enemy):
         """for attack enemy"""

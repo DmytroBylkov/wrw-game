@@ -5,9 +5,9 @@ from exception import EnemyDown, GameOver
 def get_player_name() -> str:
     """get player name from user input """
     player_name = input("Enter your name for play: ").strip()
-    if len(player_name) < 1:
+    while len(player_name) < 1:
         print("You must enter at least one character for the game name")
-        return get_player_name()
+        player_name = input("Enter your name for play: ").strip()
     return player_name
 
 def play() -> None:
